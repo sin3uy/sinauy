@@ -1,7 +1,8 @@
-function openNav() {
-  document.getElementById("mySidenav").style.right = "0";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.right = "-250px";
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+    } else {
+        sidebar.classList.add('active');
+    }
 }
