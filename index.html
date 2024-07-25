@@ -1,211 +1,33 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لا اله الا الله</title>
-    <style>
-        body {
-            background-color: #001f3f; /* لون أزرق غامق */
-            font-family: Arial, sans-serif;
-            direction: rtl;
-            text-align: center;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            background-color: #fff;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-radius: 10px;
-        }
-        h1 {
-            color: #201747;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-        select, input {
-            width: 80%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #201747;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #201747;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            bord+er-radius: 4px;
-            cursor: pointer;
-            width: 80%;
-            margin-bottom: 10px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        button:active {
-            background-color: #005f86;
-            transform: scale(0.95);
-        }
-        .hidden {
-            display: none;
-        }
-        .copy-message {
-            color: green;
-            margin-top: 10px;
-            display: none;
-        }
-    </style>
-    <script>
-        function updatePrice() {
-            var quantity = document.getElementById("quantity").value;
-            var prices = {
-                "30": 25,
-                "60": 50,
-                "120": 100,
-                "360": 240,
-                "720": 500,
-                "1200": 880,
-                "1440": 995,
-                "2000": 1290,
-                "4000": 2500,
-                "6000": 3770,
-                "8000": 5000,
-                "16000": 10000
-            };
-            var price = prices[quantity];
-            document.getElementById("price").innerText = "السعر: " + price + " جنيه";
-        }
-
-        function validateID() {
-            var id = document.getElementById("userID").value;
-            if (/^\d{11}$/.test(id)) {
-                document.getElementById("nextBtn").disabled = false;
-            } else {
-                document.getElementById("nextBtn").disabled = true;
-            }
-        }
-
-        function validatePaymentNumber() {
-            var paymentNumber = document.getElementById("paymentNumber").value;
-            if (/^\d{11}$/.test(paymentNumber)) {
-                document.getElementById("confirmBtn").disabled = false;
-            } else {
-                document.getElementById("confirmBtn").disabled = true;
-            }
-        }
-
-        function showPaymentPage() {
-            document.getElementById("mainPage").classList.add("hidden");
-            document.getElementById("paymentPage").classList.remove("hidden");
-        }
-
-        function showConfirmationPage() {
-            document.getElementById("paymentPage").classList.add("hidden");
-            document.getElementById("confirmationPage").classList.remove("hidden");
-
-            var quantity = document.getElementById("quantity").value;
-            var userID = document.getElementById("userID").value;
-            var paymentNumber = document.getElementById("paymentNumber").value;
-
-            document.getElementById("orderDetails").innerText = 
-                "عدد الشدات: " + quantity + "\n" +
-                "الأيدي الخاص بك: " + userID + "\n" +
-                "الرقم الذي حولت منه: " + paymentNumber;
-        }
-
-        function goBackToMainPage() {
-            document.getElementById("paymentPage").classList.add("hidden");
-            document.getElementById("mainPage").classList.remove("hidden");
-        }
-
-        function copyToClipboard() {
-            var copyText = document.getElementById("cashNumber").innerText;
-            navigator.clipboard.writeText(copyText).then(function() {
-                var copyMessage = document.getElementById("copyMessage");
-                copyMessage.style.display = "block";
-                setTimeout(function() {
-                    copyMessage.style.display = "none";
-                }, 2000);
-            });
-        }
-
-        function sendWhatsAppMessage() {
-            var quantity = document.getElementById("quantity").value;
-            var userID = document.getElementById("userID").value;
-            var paymentNumber = document.getElementById("paymentNumber").value;
-            var orderDetails = 
-                "عدد الشدات: " + quantity + "\n" +
-                "الأيدي الخاص بك: " + userID + "\n" +
-                "الرقم الذي حولت منه: " + paymentNumber;
-            var url = "https://wa.me/+201001064267?text=" + encodeURIComponent(orderDetails);
-            window.open(url, '_blank');
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صفحة رئيسية</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container" id="mainPage">
-        <h1>لا اله الا الله</h1>
-        <label for="quantity">اختر عدد الشدات:</label>
-        <select id="quantity" onchange="updatePrice()">
-            <option value="30">30 شدة</option>
-            <option value="60">60 شدة</option>
-            <option value="120">120 شدة</option>
-            <option value="360">360 شدة</option>
-            <option value="720">720 شدة</option>
-            <option value="1200">1200 شدة</option>
-            <option value="1440">1440 شدة</option>
-            <option value="2000">2000 شدة</option>
-            <option value="4000">4000 شدة</option>
-            <option value="6000">6000 شدة</option>
-            <option value="8000">8000 شدة</option>
-            <option value="16000">16000 شدة</option>
-        </select>
-        <p id="price">السعر: 25 جنيه</p>
-        
-        <label for="userID">أرسل الأي دي الخاص بك:</label>
-        <input type="text" id="userID" oninput="validateID()" placeholder="ادخل ID الخاص بك في ببجي" maxlength="11">
-        
-        <button id="nextBtn" onclick="showPaymentPage()" disabled>متابعة الشراء</button>
-    </div>
 
-    <div class="container hidden" id="paymentPage">
-        <h1>معلومات الدفع</h1>
-        <label for="paymentMethod">اختر طريقة الدفع الخاصة بك:</label>
-        <select id="paymentMethod">
-            <option value="vodafone">فودافون كاش</option>
-            <option value="orange">أورنج كاش</option>
-            <option value="etisalat">اتصالات كاش</option>
-        </select>
-قم بنسخ هذا الرقم والذهاب لتحويل المبلغ عليه
-        <p id="cashNumber">01005394828</p>
-        <button onclick="copyToClipboard()">نسخ الرقم</button>
-        <p class="copy-message" id="copyMessage">تم النسخ بنجاح</p>
-        
-        <label for="paymentNumber">أرسل رقمك الذي حولت منه المبلغ</label>
-        <input type="text" id="paymentNumber" oninput="validatePaymentNumber()" placeholder="أدخل الرقم" maxlength="11">
-        
-        <button id="confirmBtn" onclick="showConfirmationPage()" disabled>تم التحويل</button>
-        <button onclick="goBackToMainPage()">الرجوع</button>
-    </div>
+<header class="topnav">
+  <a href="#" class="active">الصفحة الرئيسية</a>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">الاعدادات</a>
+    <a href="#">حساباتنا</a>
+    <a href="#">التواصل معنا</a>
+    <a href="#">الادمن</a>
+    <a href="#">اثبات الشحن</a>
+    <a href="#">مواعيد العمل</a>
+    <a href="#">من نحن</a>
+  </div>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</header>
 
-    <div class="container hidden" id="confirmationPage">
-        <h1>تفاصيل الطلب الخاص بك</h1>
-        <pre id="orderDetails"></pre>
-        <button onclick="sendWhatsAppMessage()">تم الشراء</button>
-    </div>
+<div class="content">
+  <h2>مرحبًا بك في الصفحة الرئيسية</h2>
+  <!-- محتوى الصفحة يمكنك وضعه هنا -->
+</div>
+
+<script src="script.js"></script>
 </body>
-        </html>
+</html>
