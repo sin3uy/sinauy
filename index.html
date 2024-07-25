@@ -1,33 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>صفحة رئيسية</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة جانبية</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="header">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <h1>صفحة رئيسية</h1>
+    </div>
 
-<header class="topnav">
-  <a href="#" class="active">الصفحة الرئيسية</a>
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">الاعدادات</a>
-    <a href="#">حساباتنا</a>
-    <a href="#">التواصل معنا</a>
-    <a href="#">الادمن</a>
-    <a href="#">اثبات الشحن</a>
-    <a href="#">مواعيد العمل</a>
-    <a href="#">من نحن</a>
-  </div>
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-</header>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">×</button>
+        <a href="#home">الصفحة الرئيسية</a>
+        <a href="#settings">الإعدادات</a>
+        <a href="#accounts">حساباتنا</a>
+        <a href="#contact">التواصل معنا</a>
+        <a href="#proof">إثبات الشحن</a>
+        <a href="#hours">مواعيد العمل</a>
+    </div>
 
-<div class="content">
-  <h2>مرحبًا بك في الصفحة الرئيسية</h2>
-  <!-- محتوى الصفحة يمكنك وضعه هنا -->
-</div>
+    <div class="content">
+        <!-- المحتوى الرئيسي هنا -->
+    </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
