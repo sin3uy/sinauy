@@ -1,7 +1,7 @@
-document.getElementById('sidebar-toggle').addEventListener('click', function() {
-    document.getElementById('sidebar').classList.toggle('open');
-});
+function openNav() {
+  document.getElementById("mySidenav").style.right = "0";
+}
 
-document.getElementById('close-sidebar').addEventListener('click', function() {
-    document.getElementById('sidebar').classList.remove('open');
-});
+function closeNav() {
+  document.getElementById("mySidenav").style.right = "-250px";
+}
