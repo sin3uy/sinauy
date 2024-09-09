@@ -3,29 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة جانبية</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>سيناوي</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap">
+    <style>
+        /* إعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* تدرج لوني متحرك */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* القائمة العلوية */
+        .top-nav {
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc, #34e89e, #0f3443);
+            background-size: 400% 400%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            position: fixed;
+            top: 0;
+            animation: gradientAnimation 5s ease infinite;
+        }
+
+        .top-nav h1 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        /* قسم التحميل */
+        .download-section {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .download-btn, .buy-btn, .back-btn {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            background: linear-gradient(90deg, #6a11cb, #2575fc, #34e89e, #0f3443);
+            background-size: 400% 400%;
+            color: white;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: background 0.5s ease, transform 0.2s ease;
+            font-weight: 900;
+            animation: gradientAnimation 5s ease infinite;
+            margin-top: 20px;
+        }
+
+        /* إضافة مسافة إضافية بين الأزرار */
+        .buy-btn {
+            margin-top: 40px; /* تغيير المسافة حسب الحاجة */
+        }
+
+        .download-btn:hover, .buy-btn:hover, .back-btn:hover {
+            background-position: 100% 50%;
+            transform: scale(1.05);
+        }
+
+        .download-btn:active, .buy-btn:active, .back-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* صفحة التنبيه */
+        .download-page {
+            display: none;
+            padding: 50px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .alert {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert p {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .alert a {
+            font-size: 1.2rem;
+            color: #2575fc;
+            text-decoration: none;
+        }
+
+        /* قائمة حسابات التواصل الاجتماعي */
+        .social-media {
+            position: fixed;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-media a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, #6a11cb, #2575fc, #34e89e, #0f3443);
+            background-size: 400% 400%;
+            animation: gradientAnimation 5s ease infinite;
+            transition: transform 0.3s;
+        }
+
+        .social-media a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-media img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* تصميم متوافق مع الشاشات */
+        @media (max-width: 768px) {
+            .top-nav h1 {
+                font-size: 1.5rem;
+            }
+
+            .download-btn, .buy-btn, .back-btn {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-nav h1 {
+                font-size: 1.2rem;
+            }
+
+            .download-btn, .buy-btn, .back-btn {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-        <h1>صفحة رئيسية</h1>
+
+    <!-- القائمة العلوية -->
+    <header class="top-nav">
+        <h1>متجر سيناوي</h1>
+    </header>
+
+    <!-- زر التحميل وزر شراء شدات ببجي -->
+    <div class="download-section">
+        <button class="download-btn" id="downloadBtn" onclick="openDownloadAlert()">اضغط هنا للتحميل</button>
+        <button class="buy-btn" onclick="window.open('https://sin3uy.github.io/o/', '_blank')">شراء شدات ببجي</button>
+        <!-- زر الرجوع -->
+        <button class="back-btn" id="backBtn" style="display: none;" onclick="goBack()">رجوع</button>
     </div>
 
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">×</button>
-        <a href="#home">الصفحة الرئيسية</a>
-        <a href="#settings">الإعدادات</a>
-        <a href="#accounts">حساباتنا</a>
-        <a href="#contact">التواصل معنا</a>
-        <a href="#proof">إثبات الشحن</a>
-        <a href="#hours">مواعيد العمل</a>
+    <!-- التنبيه ورابط التحميل داخل نفس الصفحة -->
+    <div id="downloadAlert" class="download-page">
+        <div class="alert">
+            <p> تحديث 3.4 متوفر الان </p>
+            <a href="https://playpoints.withgoogle.com/playground/" target="_blank"> اضغط هنا لتحميل التحديث</a>
+        </div>
     </div>
 
-    <div class="content">
-        <!-- المحتوى الرئيسي هنا -->
+    <!-- قائمة حسابات التواصل الاجتماعي -->
+    <div class="social-media">
+        <a href="https://youtube.com/@sinauy" target="_blank">
+            <img src="https://t.me/sinauy" alt="YouTube">
+        </a>
+        <a href="https://wa.me/+201001064267" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+        </a>
+        <a href="https://playpoints.withgoogle.com/playground/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </a>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function openDownloadAlert() {
+            // إظهار التنبيه
+            document.getElementById('downloadAlert').style.display = 'block';
+            // إخفاء زر التحميل
+            document.getElementById('downloadBtn').style.display = 'none';
+            // إظهار زر الرجوع
+            document.getElementById('backBtn').style.display = 'inline-block';
+        }
+
+        function goBack() {
+            // إخفاء التنبيه
+            document.getElementById('downloadAlert').style.display = 'none';
+            // إعادة إظهار زر التحميل
+            document.getElementById('downloadBtn').style.display = 'inline-block';
+            // إخفاء زر الرجوع
+            document.getElementById('backBtn').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
